@@ -1,0 +1,66 @@
+{
+    "success": true,
+    "logo": "https:\/\/static.lizhi.io\/icon\/droplr.png",
+    "name": "Droplr",
+    "description": "\u5927\u540d\u9f0e\u9f0e\u7684\u5728\u7ebf\u5206\u4eab\u5de5\u5177\uff0c\u53ea\u9700\u4e00\u6b21\u62d6\u62fd\u5c31\u80fd\u8f7b\u677e\u5206\u4eab\u56fe\u7247",
+    "platform": {
+        "windows": true,
+        "linux": false,
+        "mac": true,
+        "ios": true,
+        "android": true
+    },
+    "licence_type": "\u6f14\u793a\u7248",
+    "download_url": "https:\/\/lizhi.io",
+    "extra": [
+        {
+            "type": "typeb",
+            "selection_name": "account_type",
+            "selection_desc": "\u8d26\u53f7\u7c7b\u578b",
+            "selection_hint": "\u9009\u62e9\u6ce8\u518c\u7684\u8d26\u53f7\u7c7b\u578b",
+            "selection_value": [
+                {
+                    "desc": "Google",
+                    "value": "google"
+                },
+                {
+                    "desc": "Slack",
+                    "value": "slack"
+                },
+                {
+                    "desc": "Droplr",
+                    "value": "droplr"
+                },
+                {
+                    "desc": "Facebook",
+                    "value": "facebook"
+                }
+            ],
+            "input_name": "account",
+            "input_desc": "\u8d26\u53f7",
+            "input_hint": "\u8fd9\u91cc\u8f93\u5165\u8d26\u53f7\u4fe1\u606f",
+            "input_type": "email",
+            "reg_url": "https:\/\/lizhi.io"
+        }
+    ],
+    "validation": [
+        {
+            "name": "account_type",
+            "desc": "\u8d26\u53f7\u7c7b\u578b",
+            "type": "option",
+            "value": [
+                "google",
+                "twitter",
+                "slack",
+                "droplr"
+            ],
+            "required": true
+        },
+        {
+            "name": "account",
+            "desc": "\u8d26\u53f7",
+            "type": "email",
+            "required": true
+        }
+    ]
+}

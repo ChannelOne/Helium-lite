@@ -1,0 +1,107 @@
+{
+    "success": true,
+    "logo": "https:\/\/static.lizhi.io\/icon\/test.png",
+    "name": "\u6d4b\u8bd5\u8f6f\u4ef6",
+    "description": "\u8fd9\u662f\u4e00\u4e2a\u6d4b\u8bd5\u8f6f\u4ef6",
+    "platform": {
+        "windows": true,
+        "linux": false,
+        "mac": false,
+        "ios": false,
+        "android": false
+    },
+    "licence_type": "\u4e2a\u4eba\u7248",
+    "download_url": "https:\/\/dl.lizhi.io",
+    "extra": [
+        {
+            "type": "typea",
+            "input_name": "extra_account",
+            "input_desc": "\u8d26\u53f7",
+            "input_hint": "\u8fd9\u91cc\u8f93\u5165\u8d26\u53f7\u4fe1\u606f",
+            "input_type": "email",
+            "reg_url": "https:\/\/lizhi.io"
+        },
+        {
+            "type": "typeb",
+            "selection_name": "extra_account_type",
+            "selection_desc": "\u8d26\u53f7\u7c7b\u578b",
+            "selection_hint": "\u9009\u62e9\u6ce8\u518c\u7684\u8d26\u53f7\u7c7b\u578b",
+            "selection_value": [
+                {
+                    "desc": "Google",
+                    "value": "google"
+                },
+                {
+                    "desc": "Twitter",
+                    "value": "twitter"
+                },
+                {
+                    "desc": "Facebook",
+                    "value": "facebook"
+                }
+            ],
+            "input_name": "extra_3p_account",
+            "input_desc": "\u7b2c\u4e09\u65b9\u8d26\u53f7",
+            "input_hint": "\u8fd9\u91cc\u8f93\u5165\u8d26\u53f7\u4fe1\u606f",
+            "input_type": "email",
+            "reg_url": "https:\/\/lizhi.io"
+        },
+        {
+            "type": "typec",
+            "input": [
+                {
+                    "name": "extra_username_c",
+                    "desc": "\u7528\u6237\u540d",
+                    "hint": "\u8fd9\u91cc\u8f93\u5165\u7528\u6237\u540d",
+                    "type": "email"
+                },
+                {
+                    "name": "extra_password",
+                    "desc": "\u5bc6\u7801",
+                    "hint": "\u8fd9\u91cc\u8f93\u5165\u5bc6\u7801",
+                    "type": "text",
+                    "regex": "\/^[a-zA-Z0-9]+$\/"
+                }
+            ]
+        }
+    ],
+    "validation": [
+        {
+            "name": "extra_account",
+            "desc": "\u8d26\u53f7",
+            "type": "email",
+            "required": true
+        },
+        {
+            "name": "extra_account_type",
+            "desc": "\u8d26\u53f7\u7c7b\u578b",
+            "type": "option",
+            "value": [
+                "google",
+                "twitter",
+                "facebook"
+            ],
+            "required": false
+        },
+        {
+            "name": "extra_3p_account",
+            "desc": "\u8d26\u53f7",
+            "type": "email",
+            "required": false
+        },
+        {
+            "name": "extra_username_c",
+            "desc": "\u8d26\u53f7",
+            "type": "text",
+            "value": "\/^[a-zA-Z0-9]+$\/",
+            "required": false
+        },
+        {
+            "name": "extra_password",
+            "desc": "\u5bc6\u7801",
+            "type": "text",
+            "value": "\/^[a-zA-Z0-9]+$\/",
+            "required": false
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "success": true,
+    "name": "UltraEdit",
+    "logo": "https:\/\/static.lizhi.io\/icon\/ultraedit.png",
+    "description": "\u6700\u8001\u724c\u3001\u6700\u5f3a\u5927\u7684\u5168\u5e73\u53f0\u6587\u672c\u7f16\u8f91\u5668",
+    "platform": {
+        "windows": true,
+        "linux": true,
+        "mac": true,
+        "ios": false,
+        "android": false
+    },
+    "licence_type": "\u6f14\u793a\u7248",
+    "download_url": "https:\/\/dl.lizhi.io\/ultraedit"
+}

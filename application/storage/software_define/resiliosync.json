@@ -1,0 +1,52 @@
+{
+    "success": true,
+    "name": "Resilio Enterprise",
+    "logo": "https:\/\/static.lizhi.io\/icon\/resilio_sync.png",
+    "description": "1\u5206\u949f\u81ea\u5efa\u4e91\u76d8\uff0c\u5168\u5e73\u53f0\u81ea\u52a8\u540c\u6b65\uff0c\u4e2a\u4eba\u591a\u8bbe\u5907\u6570\u636e\u7ba1\u7406\/\u56e2\u961f\u534f\u4f5c\u5229\u5668",
+    "platform": {
+        "windows": true,
+        "linux": false,
+        "mac": true,
+        "ios": true,
+        "android": true
+    },
+    "licence_type": "\u6f14\u793a\u7248",
+    "download_url": "https:\/\/dl.lizhi.io",
+    "extra": [
+        {
+            "type": "typec",
+            "input": [
+                {
+                    "name": "company",
+                    "desc": "\u516c\u53f8\u540d",
+                    "hint": "\u8fd9\u91cc\u8f93\u5165\u516c\u53f8\u540d",
+                    "type": "text",
+                    "regex": "\/^[a-zA-Z0-9 .,]+$\/"
+                },
+                {
+                    "name": "address",
+                    "desc": "\u516c\u53f8\u5730\u5740",
+                    "hint": "\u8fd9\u91cc\u8f93\u5165\u516c\u53f8\u5730\u5740",
+                    "type": "text",
+                    "regex": "\/^[a-zA-Z0-9 .,]+$\/"
+                }
+            ]
+        }
+    ],
+    "validation": [
+        {
+            "name": "company",
+            "desc": "\u516c\u53f8\u540d",
+            "type": "text",
+            "value": "\/^[a-zA-Z0-9 .,]+$\/",
+            "required": true
+        },
+        {
+            "name": "address",
+            "desc": "\u516c\u53f8\u5730\u5740",
+            "type": "text",
+            "value": "\/^[a-zA-Z0-9 .,]+$\/",
+            "required": true
+        }
+    ]
+}
