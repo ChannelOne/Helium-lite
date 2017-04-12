@@ -9,13 +9,17 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
         return parseInt(value).toFixed(2);
     });
 
-    function search(content, list) {
+    function find(content, list) {
+        var result = [];
         if (content.length < 4) {
-            return [];
+            return result;
         }
-        return list.filter(function (value) {
-            return value.indexOf(content) >= 0;
+        list.forEach(function (value, index) {
+            if (value.indexOf(content) >= 0) {
+                result.push(index);
+            }
         });
+        return result;
     }
 
     var vm = new Vue({
@@ -35,7 +39,12 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
                 var _list = this.list.map(function (value) { 
                     return value.name.toLowerCase();
                 });
-                this.search_options = search(newValue, _list).slice(0, searchCount);
+                var options = [];
+                var indexes = find(newValue, _list);
+                indexes.forEach(function (index) {
+                    options.push(this.list[index].name);
+                }.bind(this));
+                this.search_options = options;
             }.bind(this));
         },
         methods: {
