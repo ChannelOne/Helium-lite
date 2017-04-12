@@ -41,11 +41,11 @@
         </div>
     </div>
 
-    <script src="<?=resource_url('AdminLte/plugins/jQuery/jquery-2.2.3.min.js')?>"></script>
-    <script src="<?=resource_url('AdminLte/bootstrap/js/bootstrap.min.js')?>"></script>
-    <script src="<?=resource_url('AdminLte/dist/js/app.min.js')?>"></script>
-    <script src="<?=resource_url('AdminLte/plugins/jQueryUI/jquery-ui.min.js')?>"></script>
-    <script src="<?=resource_url('AdminLte/plugins/jQueryUI/datepicker-zh-CN.js')?>"></script>
+    <script src="<?=resource_url('AdminLTE/plugins/jQuery/jquery-2.2.3.min.js')?>"></script>
+    <script src="<?=resource_url('AdminLTE/bootstrap/js/bootstrap.min.js')?>"></script>
+    <script src="<?=resource_url('AdminLTE/dist/js/app.min.js')?>"></script>
+    <script src="<?=resource_url('AdminLTE/plugins/jQueryUI/jquery-ui.min.js')?>"></script>
+    <script src="<?=resource_url('AdminLTE/plugins/jQueryUI/datepicker-zh-CN.js')?>"></script>
     <script src="<?=resource_url('toastr/toastr.min.js')?>"></script>
 
     <script type="text/javascript">

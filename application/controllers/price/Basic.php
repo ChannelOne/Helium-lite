@@ -29,6 +29,8 @@ class Basic extends CI_Controller
             'sidebar' => $this->helper_model->generate_sidebar('price', 'price_basic'),
             'body'    => $this->load->view('price/price_basic_list', $body_data, TRUE),
             'footer_js' => [
+                'AdminLTE/vue/vue.min.js',
+                'price/basic_list.js',
             ],
         ];
 
