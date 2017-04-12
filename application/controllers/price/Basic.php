@@ -32,6 +32,9 @@ class Basic extends CI_Controller
                 'AdminLTE/vue/vue.min.js',
                 'price/basic_list.js',
             ],
+            'header_css' => [
+                'price/basic_list.css',
+            ],
         ];
 
         $this->load->view('common/frame', $rendering);

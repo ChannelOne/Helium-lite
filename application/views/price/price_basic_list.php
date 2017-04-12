@@ -5,15 +5,16 @@
             v-model="search_content"
             type="text" 
             class="form-control" 
+            v-on:input="handleSearchInput"
             placeholder="Search"/>
+        <ul v-show="show_search_options" class="search-list">
+            <li v-for="(item, index) in search_options" 
+                v-on:click="handleSearchOptionClicked(index, $event)">
+                {{ item }}
+            </li>
+        </ul>
         <button class="btn btn-primary">Search</button>
     </form>
-
-    <ul>
-        <li v-for="item in search_options">
-            {{ item }}
-        </li>
-    </ul>
 
     <table class="table table-hover">
         <thead>
@@ -50,7 +51,7 @@
         </tbody>
     </table>
 
-    <nav aria-label="Page navigation">
+    <nav id="navbar" aria-label="Page navigation">
     <ul class="pagination">
         <li v-if="show_first_btn">
             <a href="#" v-on:click="handleFirstClicked">First</a>

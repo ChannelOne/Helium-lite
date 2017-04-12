@@ -31,21 +31,8 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
                 current_page: 0,
                 search_options: [],
                 search_content: '',
+                show_search_options: false,
             };
-        },
-        beforeMount: function () {
-            this.$watch('search_content', function (newValue, oldValue) {
-                newValue = newValue.toLowerCase();
-                var _list = this.list.map(function (value) { 
-                    return value.name.toLowerCase();
-                });
-                var options = [];
-                var indexes = find(newValue, _list);
-                indexes.forEach(function (index) {
-                    options.push(this.list[index].name);
-                }.bind(this));
-                this.search_options = options;
-            }.bind(this));
         },
         methods: {
             turnToPage: function (pageNmber, event) {
@@ -77,6 +64,24 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
                         console.error(data);
                     }.bind(this),
                 })
+            },
+            handleSearchInput: function (event) {
+                this.show_search_options = true;
+                var newValue = this.search_content.toLowerCase();
+                var _list = this.list.map(function (value) { 
+                    return value.name.toLowerCase();
+                });
+                var options = [];
+                var indexes = find(newValue, _list).slice(0, 5);
+                indexes.forEach(function (index) {
+                    options.push(this.list[index].name);
+                }.bind(this));
+                this.search_options = options;
+            },
+            handleSearchOptionClicked: function (index, event) {
+                event.preventDefault();
+                this.search_content = this.search_options[index];
+                this.show_search_options = false;
             },
             handlePreviousClicked: function (event) {
                 event.preventDefault();
