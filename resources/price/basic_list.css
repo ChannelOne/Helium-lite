@@ -21,3 +21,13 @@
     background-color: lightgrey;
     cursor: pointer;
 }
+
+.search-box-close {
+    position: absolute;
+    margin-left: -20px;
+    margin-top: 5px;
+}
+
+.search-box-close:hover {
+    cursor: pointer;
+}

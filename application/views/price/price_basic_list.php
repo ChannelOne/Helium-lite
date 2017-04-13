@@ -7,13 +7,19 @@
             class="form-control" 
             v-on:input="handleSearchInput"
             placeholder="Search"/>
+        <span class="search-box-close" 
+            v-show="search_content.length !== 0"
+            v-on:click="clearSearchInput"><i class="fa fa-close"></i></span>
         <ul v-show="show_search_options" class="search-list">
             <li v-for="(item, index) in search_options" 
                 v-on:click="handleSearchOptionClicked(index, $event)">
                 {{ item }}
             </li>
         </ul>
-        <button class="btn btn-primary">Search</button>
+        <button class="btn btn-primary"
+            v-bind:class="{'disabled': !search_button_enable}" 
+            v-on:click="handleSearchButtonClicked($event)"
+            role="button">Search</button>
     </form>
 
     <table class="table table-hover">

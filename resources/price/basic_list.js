@@ -9,19 +9,6 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
         return parseFloat(value).toFixed(2);
     });
 
-    function find(content, list) {
-        var result = [];
-        if (content.length < 4) {
-            return result;
-        }
-        list.forEach(function (value, index) {
-            if (value.indexOf(content) >= 0) {
-                result.push(index);
-            }
-        });
-        return result;
-    }
-
     var vm = new Vue({
         el: "#app",
         data: function() {
@@ -32,6 +19,7 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
                 search_options: [],
                 search_content: '',
                 show_search_options: false,
+                search_button_enable: true,
             };
         },
         methods: {
@@ -70,13 +58,35 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
                 })
             },
             handleSearchInput: function (event) {
+                if (this.search_content.length == 0) {
+                    this.search_button_enable = true;
+                    this.show_search_options = false;
+                    return;
+                }
                 this.show_search_options = true;
                 var newValue = this.search_content.toLowerCase();
                 var _list = this.list.map(function (value) { 
                     return value.name.toLowerCase();
                 });
                 var options = [];
-                var indexes = find(newValue, _list).slice(0, 5);
+
+                this.search_button_enable = false;
+                function find(content, list) {
+                    var result = [];
+                    if (content.length < 4) {
+                        return result;
+                    }
+                    list.forEach(function (value, index) {
+                        if (value.indexOf(content) >= 0) {
+                            result.push(index);
+                        }
+                        if (value == content) {
+                            this.search_button_enable = true;
+                        }
+                    }.bind(this));
+                    return result;
+                };
+                var indexes = find.call(this, newValue, _list).slice(0, 5);
                 indexes.forEach(function (index) {
                     options.push(this.list[index].name);
                 }.bind(this));
@@ -86,6 +96,19 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
                 event.preventDefault();
                 this.search_content = this.search_options[index];
                 this.show_search_options = false;
+                this.search_button_enable = true;
+            },
+            handleSearchButtonClicked: function (event) {
+                event.preventDefault();
+                if (this.search_content.length === 0) {
+                    this.list = _list;
+                } else {
+                    var resultArr = _list.filter(function (obj) {
+                        return obj.name == this.search_content;
+                    }.bind(this));
+                    this.list = resultArr;
+                }
+                this.$forceUpdate();
             },
             handlePreviousClicked: function (event) {
                 event.preventDefault();
@@ -102,7 +125,10 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
             handleLastClicked: function (event) {
                 event.preventDefault();
                 this.current_page = this.page_count - 1;
-            }
+            },
+            clearSearchInput: function () {
+                this.search_content = '';
+            },
         }, 
         computed: {
             show_list: function() {
