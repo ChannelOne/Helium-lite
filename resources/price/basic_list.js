@@ -6,7 +6,7 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
     csrf_token, csrf_hash) {
 
     Vue.filter('price', function (value) {
-        return parseInt(value).toFixed(2);
+        return parseFloat(value).toFixed(2);
     });
 
     function find(content, list) {
@@ -48,9 +48,9 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
                 var obj = this.show_list[index];
                 var postData = {
                     software_id: obj.software_id,
-                    price: obj.price,
+                    price: parseInt(obj.price * 100),
                     currency: obj.currency,
-                    min_sale: obj.min_sale,
+                    min_sale: parseInt(obj.min_sale * 100),
                 };
                 postData[csrf_token] = csrf_hash;
                 $.ajax({
@@ -58,7 +58,11 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
                     method: 'POST',
                     data: postData,
                     success: function (data) {
-                        this.show_list[index].is_editing = false;
+                        if (data.success === true) {
+                            this.show_list[index].is_editing = false;
+                        } else {
+                            console.log(data.message);
+                        }
                     }.bind(this),
                     error: function (data) {
                         console.error(data);
@@ -104,27 +108,32 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
             show_list: function() {
                 let begin = this.current_page * itemsCountPerPage
                 var result = this.list.slice(begin, begin + 50);
-                result.forEach(function(element, index) {
-                    var postData = {
-                        'software_id': element.software_id,
-                    };
-                    postData[csrf_token] = csrf_hash;
-                    $.ajax({
-                        url: search_endpoint,
-                        data: postData,
-                        method: 'POST',
-                        success: function (data) {
-                            if (data['success'] === true) {
-                                var obj = data['0'];
-                                for (var key in obj) {
-                                    this.show_list[index][key] = obj[key];
-                                }
-                            } else {
-                                console.log(data);
+
+                var postData = {
+                    'software_id': JSON.stringify(result.map(function (value) {
+                        return value.software_id;
+                    })),
+                }
+                postData[csrf_token] = csrf_hash;
+
+                $.ajax({
+                    url: search_endpoint,
+                    data: postData,
+                    method: 'POST',
+                    success: function (data) {
+                        if (data['success'] === true) {
+                            for (var i = 0; i < this.show_list.length; ++i) {
+                                var obj = data[i];
+
+                                this.show_list[i].currency = obj.currency;
+                                this.show_list[i].price = obj.price / 100;
+                                this.show_list[i].min_sale = obj.min_sale / 100;
                             }
-                        }.bind(this),
-                    });
-                }, this);
+                        } else {
+                            console.log(data.message);
+                        }
+                    }.bind(this)
+                });
                 return result;
             },
             page_count: function() {
