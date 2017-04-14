@@ -37,7 +37,7 @@
                 <th>{{ item.name }}</th>
 
                 <td align="right" v-if="!item.is_editing">{{ item.price | price }}</td>
-                <td v-else><input type="number" v-model="item.price" /></td>
+                <td align="right" v-else><input type="number" v-model="item.price" /></td>
 
                 <td v-if="!item.is_editing">{{ item.currency }}</td>
                 <td v-else>
@@ -47,7 +47,7 @@
                 </td>
 
                 <td align="right" v-if="!item.is_editing">{{ item.min_sale | price }}</td>
-                <td v-else><input type="number" v-model="item.min_sale" /></td>
+                <td align="right" v-else><input type="number" v-model="item.min_sale" /></td>
 
                 <td>
                     <a v-if="!item.is_editing" v-on:click="editItem(index, $event)" href="#">Edit</a>
@@ -101,6 +101,9 @@ function turnToList(software_map) {
         value['is_editing'] = false;
         result.push(value);
     }
+    result = result.sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+    }); // sort the list
     return result;
 }
 
