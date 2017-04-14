@@ -3,7 +3,7 @@ var pageSplitCount = 4;
 var searchCount = 5;
 
 function handleBasicList(_list, currency, search_endpoint, edit_endpoint, 
-    csrf_token, csrf_hash) {
+    privilege, csrf_token, csrf_hash) {
 
     Vue.filter('price', function (value) {
         return parseFloat(value).toFixed(2);
@@ -33,6 +33,8 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
             },
             saveItem: function (index, event) {
                 event.preventDefault()
+                if (privilege['price_basic_edit'] !== true) return;
+
                 var obj = this.show_list[index];
                 var postData = {
                     software_id: obj.software_id,
@@ -48,12 +50,13 @@ function handleBasicList(_list, currency, search_endpoint, edit_endpoint,
                     success: function (data) {
                         if (data.success === true) {
                             this.show_list[index].is_editing = false;
+                            toastr.info("Edtit success");
                         } else {
-                            console.log(data.message);
+                            toastr.warning(data.message);
                         }
                     }.bind(this),
                     error: function (data) {
-                        console.error(data);
+                        toastr.error(data);
                     }.bind(this),
                 })
             },

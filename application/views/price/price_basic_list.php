@@ -36,7 +36,7 @@
             <tr v-for="(item, index) in show_list">
                 <th>{{ item.name }}</th>
 
-                <td v-if="!item.is_editing">{{ item.price | price }}</td>
+                <td align="right" v-if="!item.is_editing">{{ item.price | price }}</td>
                 <td v-else><input type="number" v-model="item.price" /></td>
 
                 <td v-if="!item.is_editing">{{ item.currency }}</td>
@@ -46,7 +46,7 @@
                     </select>
                 </td>
 
-                <td v-if="!item.is_editing">{{ item.min_sale | price }}</td>
+                <td align="right" v-if="!item.is_editing">{{ item.min_sale | price }}</td>
                 <td v-else><input type="number" v-model="item.min_sale" /></td>
 
                 <td>
@@ -105,6 +105,7 @@ function turnToList(software_map) {
 }
 
 var currency = <?php echo json_encode($currency); ?>;
+var privilege = <?php echo json_encode($privilege); ?>;
 var a = <?php echo $software_id_json ?>;
 a = turnToList(a);
 var search_endpoint = "<?php echo $search_endpoint; ?>",
@@ -113,10 +114,6 @@ var csrf_token = "<?php echo $csrf_token ?>",
     csrf_hash = "<?php echo $csrf_hash ?>";
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-    handleBasicList(a, currency, search_endpoint, edit_endpoint, csrf_token, csrf_hash);
+    handleBasicList(a, currency, search_endpoint, edit_endpoint, privilege, csrf_token, csrf_hash);
 });
 </script>
-
-<?php
-var_dump($privilege);
-?>
